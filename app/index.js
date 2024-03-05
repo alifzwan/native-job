@@ -6,6 +6,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS, SIZES, icons } from '../constants'
 import ScreenHeaderBtn from '../components/common/header/ScreenHeaderBtn'
 import { ScrollView } from 'react-native-web'
+import Welcome from '../components/home/welcome/Welcome'
+import { Nearbyjobs, Popularjobs } from '../components'
 
 
 const Home = () => {
@@ -33,6 +35,8 @@ const Home = () => {
           }}
         >
           <Welcome />
+          <Popularjobs />
+          <Nearbyjobs />
 
         </View>
       </ScrollView>
