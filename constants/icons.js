@@ -1,5 +1,7 @@
 import heart from "../assets/icons/heart.png";
 import menu from "../assets/icons/menu.png";
+import profile from "../assets/images/kemal.jpg";
+
 import search from "../assets/icons/search.png";
 import filter from "../assets/icons/filter.png";
 import left from "../assets/icons/left.png";
@@ -11,6 +13,7 @@ import chevronRight from '../assets/icons/chevron-right.png'
 
 export default {
   heart,
+  profile,
   menu,
   search,
   filter,

@@ -6,7 +6,7 @@ import { Image, TouchableOpacity } from "react-native-web";
 //                     On press down, the opacity of the wrapped view is decreased, dimming it.
 
 
-const ScreenHeaderBtn = ({iconUrl, dimension, handlePress}) => {
+const ScreenHeaderBtn = ({ iconUrl, dimension, handlePress }) => {
   return (
     <TouchableOpacity 
       style={styles.btnContainer} 
