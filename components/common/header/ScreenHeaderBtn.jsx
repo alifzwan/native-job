@@ -1,15 +1,23 @@
-import { Image, TouchableOpacity } from "react-native";
 
 import styles from "./screenheader.style";
+import { Image, TouchableOpacity } from "react-native-web";
 
-const ScreenHeaderBtn = ({ iconUrl, dimension, handlePress }) => {
+//  TouchableOpacity - A wrapper for making views respond properly to touches. 
+//                     On press down, the opacity of the wrapped view is decreased, dimming it.
+
+
+const ScreenHeaderBtn = ({iconUrl, dimension, handlePress}) => {
   return (
-    <TouchableOpacity style={styles.btnContainer} onPress={handlePress}>
-      <Image
-        source={iconUrl}
-        resizeMode='cover'
-        style={styles.btnImg(dimension)}
+    <TouchableOpacity 
+      style={styles.btnContainer} 
+      onPress={handlePress}>
+
+      <Image 
+        source ={iconUrl} 
+        resizedMode="cover"
+        style={styles.btnImg(dimension)}  
       />
+      
     </TouchableOpacity>
   );
 };
