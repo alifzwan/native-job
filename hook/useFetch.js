@@ -9,11 +9,7 @@ const useFetch = (endpoint, query) => {
 
   const options = {
     method: 'GET',
-    url: `https://jsearch.p.rapidapi.com/${endpoint}`,
-    headers: {
-      'X-RapidAPI-Key': "f773a2fc92mshc51eb769aa26e93p18ebbejsnc9e93e84baea",
-      'X-RapidAPI-Host':'jsearch.p.rapidapi.com'
-    },
+    url: `https://80b586ca-2344-4519-9d65-b5359fb80611.mock.pstmn.io`,
     params: {
       ...query
     }
