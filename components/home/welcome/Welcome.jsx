@@ -10,7 +10,7 @@ const jobTypes =[
   "Contract"
 ]
 
-const Welcome = () => {
+const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter()
   const [activeJobType, setActiveJobType] = useState("Full-Time")
   return (
@@ -26,20 +26,23 @@ const Welcome = () => {
                 style={styles.searchInput} 
                 value=""
                 placeholder="What are you looking for?"
-                onChange={() => {}}/>
+                onChangeText={(text) => setSearchTerm(text)}
+              />
             </View>
 
-            <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+            <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
               <Image 
                 source={icons.search}
                 resizeMode="contain"
-                style={styles.searchBtnImage}/>
+                style={styles.searchBtnImage}
+              />
             </TouchableOpacity>
         </View>
 
         <View style={styles.tabsContainer}>
           <FlatList 
             data={jobTypes} 
+            keyExtractor={(item) => item}
             renderItem={({ item }) => (
               <TouchableOpacity 
                 style={styles.tab(activeJobType, item)} 
@@ -53,7 +56,6 @@ const Welcome = () => {
                 </Text>
               </TouchableOpacity>
             )} 
-            keyExtractor={(item) => item}
             contentContainerStyle={{columnGap: SIZES.small}}
             horizontal
           />
