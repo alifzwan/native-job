@@ -2,19 +2,22 @@ import { Stack, useGlobalSearchParams, useLocalSearchParams, useRouter } from 'e
 import React, { useCallback, useState } from 'react'
 import useFetch from '../../hook/useFetch'
 import { ActivityIndicator, RefreshControl, SafeAreaView, ScrollView, Text, View } from 'react-native-web'
-import { COLORS, icons } from '../../constants'
+import { COLORS, SIZES, icons } from '../../constants'
 import ScreenHeaderBtn from '../../components/common/header/ScreenHeaderBtn'
 import About from '../../components/jobdetails/about/About'
 import Company from '../../components/jobdetails/company/Company'
 import Tabs from '../../components/jobdetails/tabs/Tabs'
 import Specifics from '../../components/jobdetails/specifics/Specifics'
+import Footer from '../../components/jobdetails/footer/Footer'
 
 const tabs = ["About", "Qualifications", "Responsibilities"]
 
-
-
-
 const JobDetails = () => {
+
+    // useLocalSearchParams  - Returns the search parameters for the current component. 
+    //                         It only updates when the global URL conforms to the route.
+    // useGlobalSearchParams - Returns the global URL regardless of the component. 
+    //                         It updates on every search param change and might cause components to update extraneously in the background
 
     const router = useRouter()
     const params = useGlobalSearchParams() // To get specific ID of the job-details page
@@ -37,15 +40,19 @@ const JobDetails = () => {
         switch (activeTab) {
             case "About":
                 return (
-                    <About />
+                    <About info={data[0].job_description ?? "No data available"}/>
                 )
             case "Qualifications":
                 return (
-                    <Specifics />
+                    <Specifics 
+                    title="Qualifications"
+                    details={data[0].job_highlights?.Qualifications ?? "There's no data available"}/>
                 )
             case "Responsibilities":
                 return (
-                    <Specifics />
+                    <Specifics 
+                    title="Responsibilities"
+                    details={data[1].job_highlights?.Responsibilities ?? "There's no data available"}/>
                 )
             default:
                 return null
@@ -66,7 +73,7 @@ const JobDetails = () => {
                         <ScreenHeaderBtn 
                             iconUrl={icons.left}
                             dimension="60%"
-                            handlePress={() => router.back()}
+                            handlePress={() => router.push("/")}
                             />
                     ),
                     headerRight: () => (
@@ -75,6 +82,7 @@ const JobDetails = () => {
                             dimension="60%"
                             />
                     ),
+
                     
                 }} 
             />
@@ -94,12 +102,12 @@ const JobDetails = () => {
                     ) : data.length === 0 ?(
                         <Text>There is no available data</Text>
                     ) : (
-                        <View>
+                        <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
                            <Company 
-                                companyLogo={data.employer_logo}
-                                jobTitle={data.job_title}
-                                companyName={data.employer_name}
-                                location={data.job_country}
+                                companyLogo={data[0].employer_logo}
+                                jobTitle={data[0].job_title}
+                                companyName={data[0].employer_name}
+                                location={data[0].job_country}
                            />
 
                            <Tabs
@@ -111,10 +119,8 @@ const JobDetails = () => {
                         </View>
                     )}
                 </ScrollView>
+                <Footer url={data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} />
             </>
-
-           
-
         </SafeAreaView>
     )
 }
